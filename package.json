@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver",
     "test": "jest",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force",
     "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
@@ -80,6 +81,8 @@
     "reactotron-react-native": "1.13.2",
     "reactotron-redux": "1.13.0",
     "reactotron-redux-saga": "1.13.0",
+    "remote-redux-devtools": "^0.5.12",
+    "remotedev-rn-debugger": "^0.8.3",
     "snazzy": "^7.0.0",
     "standard": "10.0.2"
   },
