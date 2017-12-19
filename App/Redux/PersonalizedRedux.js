@@ -36,9 +36,8 @@ export const request = (state, { category }) =>
 // successful api lookup
 export const success = (state, action) => {
   const { result } = action
-  //let resultTemp = [...state.result, {category:result.category, data:result.result}]
-  //return state.merge({ fetching: false, error: null, result: [...resultTemp] })
-  return state.merge({ fetching: false, error: null, result: [{category:result.category, data:result.result}]  })
+  const resultTemp = state.result != null ? [...state.result, {category: result.category, data:result.result}] : [ {category:result.category, data:result.result}]
+  return state.merge({ fetching: false, error: null, result: resultTemp })
 }
 
 // Something went wrong somewhere.

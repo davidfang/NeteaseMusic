@@ -163,21 +163,24 @@ class ListContainer extends React.PureComponent {
   render () {
     return (
       <View style={styles.container}>
-          <SectionList
-          renderSectionHeader={this.renderSectionHeader}
-          sections={this.state.recommend}
-          contentContainerStyle={styles.listContent}
-          data={this.state.recommend}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-          initialNumToRender={this.oneScreensWorth}
-          ListHeaderComponent={this.renderHeader}
-          //SectionSeparatorComponent={this.renderSectionSeparator}
-          ListFooterComponent={this.renderFooter}
-          ListEmptyComponent={this.renderEmpty}
-          //ItemSeparatorComponent={this.renderSeparator}
-          //renderSectionFooter={this.renderSectionFooter}
-        />
+        {
+          this.state.recommend && (<SectionList
+         renderSectionHeader={this.renderSectionHeader}
+         sections={this.state.recommend}
+         contentContainerStyle={styles.listContent}
+         data={this.state.recommend}
+         renderItem={this.renderItem}
+         keyExtractor={this.keyExtractor}
+         initialNumToRender={this.oneScreensWorth}
+         ListHeaderComponent={this.renderHeader}
+         //SectionSeparatorComponent={this.renderSectionSeparator}
+         ListFooterComponent={this.renderFooter}
+         ListEmptyComponent={this.renderEmpty}
+         //ItemSeparatorComponent={this.renderSeparator}
+         //renderSectionFooter={this.renderSectionFooter}
+         />)
+
+        }
       </View>
     )
   }
