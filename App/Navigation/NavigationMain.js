@@ -2,7 +2,11 @@
  * Created by admin on 17/12/11.
  */
 import React, { Component } from 'react'
-import { Drawer, Scene, Router, Stack } from 'react-native-router-flux'
+import { Drawer, Scene, Router, Stack, Tabs } from 'react-native-router-flux'
+
+import {StackNavigator, TabBarBottom, TabNavigator} from 'react-navigation'
+
+import {Colors } from '../Themes'
 
 import TabIcon from '../Components/TabIcon'
 
@@ -12,19 +16,74 @@ import Friends from '../Containers/Friends'
 import Account from '../Containers/Account'
 
 
-class NavigationMain extends Component {
-  render () {
-    return (
-      <Router>
-        <Stack key='root' tabs={true} >
-          <Scene key='discoverMusic' component={DiscoverMusic} title='发现音乐' icon={TabIcon} iconName='disc-outline' initial hideNavBar />
-          <Scene key='myMusic' component={MyMusic} title='我的音乐' icon={TabIcon} iconName='musical-notes-outline' />
-          <Scene key='friends' component={Friends} title='朋友' icon={TabIcon} iconName='contacts-outline' />
-          <Scene key='account' component={Account} title='账号' icon={TabIcon} iconName='person-outline' />
-        </Stack>
-      </Router>
-    )
+
+const Tab = TabNavigator(
+  {
+    DiscoverMusic: {
+      screen: DiscoverMusic,
+      navigationOptions: {
+        tabBarLabel: '发现音乐',
+        tabBarIcon: ({ focused, tintColor }) => (
+          <TabIcon iconName='disc-outline' focused={focused} />
+        )
+      }
+    },
+    MyMusic: {
+      screen: MyMusic,
+      navigationOptions: {
+        tabBarLabel: '我的音乐',
+        tabBarIcon: ({ focused, tintColor }) => (
+          <TabIcon iconName='musical-notes-outline' focused={focused} />
+        )
+      }
+    },
+    Friends: {
+      screen: Friends,
+      navigationOptions: {
+        tabBarLabel: '朋友',
+        tabBarIcon: ({ focused, tintColor }) => (
+          <TabIcon iconName='contacts-outline' focused={focused} />
+        )
+      }
+    },
+    Account: {
+      screen: Account,
+      navigationOptions: {
+        tabBarLabel: '账号',
+        tabBarIcon: ({ focused, tintColor }) => (
+          <TabIcon iconName='person-outline' focused={focused} />
+        )
+      }
+    }
+  },
+  {
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    swipeEnabled: true,
+    animationEnabled: false,
+    initialRouteName: 'DiscoverMusic',
+    lazy: true,
+    tabBarOptions: {
+      activeTintColor: Colors.steel,
+      inactiveTintColor: Colors.silver,
+      style: {
+        backgroundColor: Colors.coal
+      }
+    }
   }
-}
+)
+const NavigationMain = StackNavigator(
+  {
+    Tab: { screen: Tab }
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerBackTitle: '返回',
+      headerTintColor: '#333333',
+      showIcon: true
+    }
+  }
+)
 
 export default NavigationMain

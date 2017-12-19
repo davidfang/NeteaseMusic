@@ -1,5 +1,5 @@
 const colors = {
-  background: '#353d47',
+  background: '#dd4b39',
   jhipsterBlue: '#3E8ACC',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',
@@ -22,7 +22,8 @@ const colors = {
   eggplant: '#251a34',
   border: '#483F53',
   banner: '#5F3E63',
-  text: '#E0D7E5'
+  text: '#E0D7E5',
+  black: '#131418'
 }
 
 export default colors
