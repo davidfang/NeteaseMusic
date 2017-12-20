@@ -26,11 +26,10 @@ class DiscoverMusic extends Component {
 
   render () {
     const types = [
-      {title: '个性推荐', component: Recommend},
+      {title: '个性推荐', component: ListContainer},
       {title: '歌单', component: PlayList},
       {title: '主播电台', component: Radio},
-      {title: '排行榜', component: Top},
-      {title: '排行', component: ListContainer}
+      {title: '排行榜', component: Top}
     ]
     return (
       <View style={styles.container}>

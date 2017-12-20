@@ -10,8 +10,9 @@ export default StyleSheet.create({
   row: {
     width: Metrics.images.doubleLarge,
     //height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    //alignItems: 'center',
     //margin: Metrics.smallMargin,
     marginVertical: Metrics.smallMargin,
     //backgroundColor: Colors.fire,
@@ -61,5 +62,12 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     flexDirection: 'row',
     flexWrap: 'wrap'
+  },
+  menus: {
+    flex: 1,
+    width: Metrics.screenWidth,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   }
 })

@@ -17,7 +17,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   data: null,
   fetching: null,
-  result: [],
+  result: null,
   error: null
 })
 
@@ -36,8 +36,19 @@ export const request = (state, { category }) =>
 // successful api lookup
 export const success = (state, action) => {
   const { result } = action
-  const resultTemp = state.result != null ? [...state.result, {category: result.category, data:result.result}] : [ {category:result.category, data:result.result}]
-  return state.merge({ fetching: false, error: null, result: resultTemp })
+  //let resultTemp = state.result != null ? [...state.result, {category: result.category, data:result.result}] : [ {category:result.category, data:result.result}]
+  let resultTemp = [ {category:result.category, data:result.result}]
+
+  //let resultTemp = state.result != null ? state.result : []
+  //let resultTemp = state.result
+  //let resultTemp =  []
+  // resultTemp.push({
+  //   category: result.category,
+  //   data:result.result.map(v => ({...v, title: v.name, picUrl: v.picUrl + '?param=140y140'}))
+  // })
+
+  //return state.merge({ fetching: false, error: null, result: resultTemp })
+  return state.merge({ fetching: false, error: null, result: {...state.result,[result.category]: {category: result.category, data:result.result} } })
 }
 
 // Something went wrong somewhere.

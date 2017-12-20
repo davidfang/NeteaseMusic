@@ -6,10 +6,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 
 import PersonalizedActions from '../Redux/PersonalizedRedux'
+import BanerActions from '../Redux/BanerRedux'
 
 // Styles
 import styles from './Styles/ListContainerStyle'
 import {Colors } from '../Themes'
+
+import MenuIcon from '../Components/MenuIcon'
+import Baners from '../Components/Baners'
 
 class ListContainer extends React.PureComponent {
   constructor (props) {
@@ -23,6 +27,7 @@ class ListContainer extends React.PureComponent {
     this.state = {
       refreshing: true,
       recommend: this.props.personalized,
+      banner: [],
       data: [
         {
           key: 'First',
@@ -63,6 +68,10 @@ class ListContainer extends React.PureComponent {
     if(this.state.refreshing) {
       this.props.getPersonalized()
       this.props.getPersonalized('mv')
+    }
+    const { data } = this.props.baner
+    if(null === data){
+      this.props.getBaner()
     }
   }
 
@@ -117,12 +126,24 @@ class ListContainer extends React.PureComponent {
   * Removing a function here will make SectionList use default
   *************************************************************/
   // Render a header?
-  renderHeader = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Full List Header - </Text>
-
+  renderHeader = () => {
+    const { data } = this.props.baner
+   return (
+     <View>
+       <Baners data={data}/>
+       <View style={styles.menus}>
+        <MenuIcon name='radio' title='私人电台'/>
+        <MenuIcon name='calendar' title='私人电台'/>
+        <MenuIcon name='stats' title='排行榜'/>
+        <MenuIcon  />
+       </View>
+     </View>
+       )
+    //<Text style={[styles.label, styles.sectionHeader]}> - Full List Header - </Text>
+  }
   // Render a footer?
   renderFooter = () =>
-    <Text style={[styles.label, styles.sectionHeader]}> - Full List Footer - </Text>
+    <Text style={[styles.label, styles.sectionHeader]}> - 我们是有底线的 - </Text>
 
   // Does each section need a footer?
   renderSectionFooter = () =>
@@ -161,14 +182,15 @@ class ListContainer extends React.PureComponent {
   // )}
 
   render () {
+    let data = this.props.personalized && Object.values(this.props.personalized) || []
     return (
       <View style={styles.container}>
         {
-          this.state.recommend && (<SectionList
+          data && (<SectionList
          renderSectionHeader={this.renderSectionHeader}
-         sections={this.state.recommend}
+         sections={data}
          contentContainerStyle={styles.listContent}
-         data={this.state.recommend}
+         data={data}
          renderItem={this.renderItem}
          keyExtractor={this.keyExtractor}
          initialNumToRender={this.oneScreensWorth}
@@ -187,15 +209,17 @@ class ListContainer extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const {personalized:{result:personalized}} = state
+  const {baner, personalized:{result:personalized}} = state
   return {
-    personalized
+    personalized,
+    baner
     // ...redux state to props here
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getBaner: () => dispatch(BanerActions.banerRequest()),
     getPersonalized: (category) => dispatch( PersonalizedActions.personalizedRequest(category))
   }
 }
