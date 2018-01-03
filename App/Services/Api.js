@@ -47,6 +47,7 @@ const create = (baseURL = AppConfig.apiUrl) => {
 
   const getBaner = () => api.get('banner')
   const getPersonalized = (category) => api.get(category && ('personalized/'+ category) || 'personalized')
+  const getPlayList = (param) => api.get('/top/playlist/highquality', param)
   // ignite-jhipster-api-method-needle
 
   // ------
@@ -73,7 +74,8 @@ const create = (baseURL = AppConfig.apiUrl) => {
     updateAccount,
     changePassword,
     getBaner,
-    getPersonalized
+    getPersonalized,
+    getPlayList
   }
 }
 

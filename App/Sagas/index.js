@@ -13,6 +13,7 @@ import { AccountTypes } from '../Redux/AccountRedux'
 
 import { BanerTypes } from '../Redux/BanerRedux'
 import { PersonalizedTypes } from '../Redux/PersonalizedRedux'
+import {PlayListTypes} from '../Redux/PlayListRedux'
 // ignite-jhipster-saga-redux-import-needle
 
 /* ------------- Sagas ------------- */
@@ -22,6 +23,7 @@ import { login, logout, loginLoad } from './LoginSagas'
 import { register } from './RegisterSagas'
 import { forgotPassword, changePassword } from './PasswordSagas'
 import { getAccount, updateAccount } from './AccountSagas'
+import { getPlayList } from './PlayListSagas'
 
 import { getBaner } from './BanerSagas'
 import { getPersonalized } from './PersonalizedSagas'
@@ -55,6 +57,7 @@ export default function * root () {
     // takeLatest(AccountTypes.ACCOUNT_UPDATE_REQUEST, updateAccount, api),
 
     takeLatest(BanerTypes.BANER_REQUEST, getBaner, api),
-    takeEvery(PersonalizedTypes.PERSONALIZED_REQUEST, getPersonalized, api)
+    takeEvery(PersonalizedTypes.PERSONALIZED_REQUEST, getPersonalized, api),
+    takeLatest(PlayListTypes.PLAY_LIST_REQUEST, getPlayList, api)
   ])
 }

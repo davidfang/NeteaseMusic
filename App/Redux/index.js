@@ -13,7 +13,8 @@ export const reducers = combineReducers({
   password: require('./PasswordRedux').reducer,
   search: require('./SearchRedux').reducer,
   baner: require('./BanerRedux').reducer,
-  personalized: require('./PersonalizedRedux').reducer
+  personalized: require('./PersonalizedRedux').reducer,
+  playList: require('./PlayListRedux').reducer
 })
 
 export default () => {

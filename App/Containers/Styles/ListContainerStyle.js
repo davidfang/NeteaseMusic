@@ -8,7 +8,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.silver
   },
   row: {
-    width: Metrics.images.doubleLarge,
+    width: Metrics.screenWidth * 0.32,
     //height: 100,
     justifyContent: 'space-between',
     flexWrap: 'wrap',
@@ -55,8 +55,8 @@ export default StyleSheet.create({
     top: 5
   },
   image: {
-    width: Metrics.images.doubleLarge,
-    height: Metrics.images.doubleLarge
+    width: Metrics.screenWidth * 0.32,
+    height: Metrics.screenWidth * 0.32
   },
   listContent: {
     justifyContent: 'space-around',
